@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MBOLO GRILL — Menu digital, Libreville</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffaf0;--tx:#13261c;--mu:#66786c;--ac:#FCD116;--ac-tx:#13261c;--rd:#c8321e;--ln:#e4dcc6;--sf:#f1e9d3;--pb:#0F6B47;--pc:#0F6B47;--pt:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10231a;--tx:#f5efdc;--mu:#9fb3a5;--ln:#26402f;--sf:#1a3326;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10231a;--tx:#f5efdc;--mu:#9fb3a5;--ln:#26402f;--sf:#1a3326;color-scheme:dark}
+*,*:before,*:after{box-sizing:border-box}
+html{scroll-padding-top:150px}
+body{margin:0;background:var(--pb);color:var(--pt);font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.35;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:var(--pt);opacity:.1;z-index:0;pointer-events:none;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24l12-12 12 12 12-12 12 12' fill='none' stroke='black' stroke-width='3'/%3E%3Cpath d='M0 48l12-12 12 12 12-12 12 12' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") 0 0/48px 48px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24l12-12 12 12 12-12 12 12' fill='none' stroke='black' stroke-width='3'/%3E%3Cpath d='M0 48l12-12 12 12 12-12 12 12' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") 0 0/48px 48px;animation:drift 40s linear infinite}
+@keyframes drift{to{-webkit-mask-position:96px 48px;mask-position:96px 48px}}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding-bottom:120px}
+.wash{position:fixed;inset:0;z-index:0;transition:clip-path .75s cubic-bezier(.65,0,.2,1)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--pc);transition:background-color .75s;padding:16px 0 12px}
+.brand{display:flex;justify-content:space-between;align-items:center;padding:0 20px 12px;font-weight:800;font-size:20px;letter-spacing:-.01em}
+.brand span{font-weight:600;font-size:13px;opacity:.85}
+.flag{display:flex;height:5px;margin:0 20px 14px;border-radius:9px;overflow:hidden}
+.flag i:nth-child(1){flex:1;background:#3a9b5f}.flag i:nth-child(2){flex:1;background:#FCD116}.flag i:nth-child(3){flex:1;background:#3a75c4}
+#tabs{display:flex;gap:8px;overflow-x:auto;padding:0 20px;scrollbar-width:none}
+#tabs::-webkit-scrollbar{display:none}
+#tabs button{flex:none;display:flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:99px;border:2px solid color-mix(in srgb,var(--pt) 40%,transparent);font-weight:700;font-size:14px;transition:background-color .3s,color .3s}
+#tabs img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+#tabs button[aria-current=true]{background:var(--pt);color:var(--pc);border-color:var(--pt)}
+.mq{overflow:hidden;white-space:nowrap;padding:12px 0;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;opacity:.9}
+.mq div{display:inline-block;animation:mq 22s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+#head{padding:18px 20px 22px}
+#head h2{margin:0;display:flex;flex-wrap:wrap;font-size:clamp(54px,17vw,84px);line-height:.95;font-weight:800;letter-spacing:-.04em;text-transform:uppercase}
+#head h2 i{font-style:normal;display:inline-block;animation:drop .8s var(--d) both cubic-bezier(.3,1.6,.5,1)}
+@keyframes drop{from{transform:translateY(-80%) rotate(-14deg);opacity:0}to{transform:none;opacity:1}}
+#head p{margin:12px 0 0;font-size:16px;max-width:28ch;animation:fade .6s .5s both}
+@keyframes fade{from{opacity:0}}
+#grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 16px;padding:0 20px}
+.card{text-align:left;animation:pop .7s var(--d) both cubic-bezier(.3,1.5,.5,1)}
+.card:nth-child(even){margin-top:36px}
+@keyframes pop{from{opacity:0;transform:scale(.6) translateY(40px)}to{opacity:1;transform:none}}
+.arch{position:relative;aspect-ratio:3/4;border-radius:999px 999px 24px 24px;overflow:hidden;outline:2px solid var(--pt);outline-offset:5px;background:rgba(0,0,0,.2)}
+.arch img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.3,1.5,.5,1)}
+.card:hover .arch img,.card:focus-visible .arch img{transform:scale(1.12) rotate(-2deg)}
+.card h3{margin:16px 0 8px;font-size:18px;line-height:1.1;font-weight:800;letter-spacing:-.01em}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.price{background:var(--pt);color:var(--pc);padding:5px 10px;border-radius:99px;font-weight:800;font-size:13px;white-space:nowrap}
+.add{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--pt);font-size:20px;display:grid;place-items:center;transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.card:hover .add{transform:rotate(90deg) scale(1.1)}
+.tag{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:var(--pt);color:var(--pc);font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.sub{margin:0;color:var(--mu);font-size:14px}
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:.25s;z-index:20}
+.veil.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;bottom:0;width:100%;max-width:480px;background:var(--bg);color:var(--tx);border-radius:28px 28px 0 0;transform:translate(-50%,105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);z-index:21;max-height:92vh;overflow:auto;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.sheet.on{transform:translate(-50%,0)}
+.sheet .ph{width:100%;height:230px;object-fit:cover;display:block}
+.sheet .b{padding:18px 20px}
+.sheet h3{margin:0;font-size:28px;font-weight:800;letter-spacing:-.02em}
+.opt{display:flex;justify-content:space-between;align-items:center;width:100%;padding:13px 14px;border:1.5px solid var(--ln);border-radius:14px;margin-top:10px;font-weight:600;font-size:15px;text-align:left}
+.opt[aria-pressed=true]{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent)}
+.qty{display:flex;align-items:center;gap:14px;font-weight:800;font-size:18px}
+.qty button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ln);font-size:20px}
+.cta{width:100%;background:var(--ac);color:var(--ac-tx);padding:16px;border-radius:99px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;margin-top:16px}
+.close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:18px}
+.bar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);width:calc(100% - 32px);max-width:448px;background:var(--tx);color:var(--bg);border-radius:99px;padding:8px 8px 8px 22px;display:flex;justify-content:space-between;align-items:center;font-weight:600;z-index:10;transition:transform .3s}
+.bar.on{transform:translate(-50%,0)}
+.bar b{background:var(--ac);color:var(--ac-tx);padding:12px 20px;border-radius:99px;font-weight:800}
+.line{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px dashed var(--ln);font-size:15px}
+.line small{display:block;color:var(--mu)}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:22px;margin-top:14px}
+.ok{text-align:center;padding:36px 20px}.ok h3{font-size:30px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="app">
+<div class="top"><div class="brand">MBOLO GRILL <span>Libreville, Gabon</span></div><div class="flag"><i></i><i></i><i></i></div><div id="tabs" role="tablist"></div></div>
+<div class="mq" aria-hidden="true"><div>Mbolo ! Bienvenue à Libreville ◆ Cuisiné minute ◆ Grillé, croustillant, généreux ◆ Mbolo ! Bienvenue à Libreville ◆ Cuisiné minute ◆ Grillé, croustillant, généreux ◆&nbsp;</div></div>
+<div id="head"></div>
+<main id="grid"></main>
+</div>
+<div class="veil" id="veil"></div><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+<button class="bar" id="bar"></button>
+<script>
+const IMG={b1:"images/b1.jpg",b2:"images/b2.jpg",b3:"images/b3.jpg",b4:"images/b4.jpg",b5:"images/b5.jpg",hd1:"images/hd1.jpg",hd2:"images/hd2.jpg",hd3:"images/hd3.jpg",sub1:"images/sub1.jpg",sub2:"images/sub2.jpg",sub3:"images/sub3.jpg",sub4:"images/sub4.jpg",wrap:"images/wrap.jpg",pan:"images/pan.jpg",doner:"images/doner.jpg"};
+const CATS=[
+{id:"burgers",n:"Burgers",s:"Pain brioché, sauce maison",items:[
+{id:"b1",img:"b1",n:"Poulet BBQ",d:"Poulet croustillant, salade iceberg, sauce barbecue, pain brioché.",p:5500},
+{id:"b2",img:"b2",n:"Trio sliders",d:"Trois mini-burgers fondants, cheddar, frites maison.",p:9000,tag:"À partager"},
+{id:"b3",img:"b3",n:"Chicken cheese",d:"Poulet pané, cheddar, tomate, salade, sauce barbecue.",p:6000},
+{id:"b4",img:"b4",n:"Crispy chick",d:"Poulet pané doré, laitue, tomate, sauce crème.",p:5000},
+{id:"b5",img:"b5",n:"Chick & cheese",d:"Poulet pané, cheddar fondu, tomate, laitue, sauce.",p:5500}]},
+{id:"hotdogs",n:"Hot-dogs",s:"Saucisse grillée, pain croustillant",items:[
+{id:"hd1",img:"hd1",n:"Moutarde & oignons",d:"Saucisse grillée, moutarde, oignons rouges, pain toasté.",p:3500},
+{id:"hd2",img:"hd2",n:"Piquant jalapeño",d:"Saucisse, jalapeños, ketchup, moutarde, oignons croustillants.",p:4000,tag:"Piquant"},
+{id:"hd3",img:"hd3",n:"Cheese dog",d:"Saucisse, cheddar fondu, pickles, ketchup, moutarde.",p:4500}]},
+{id:"subs",n:"Subs",s:"Pain frais du jour, au choix chaud ou froid",items:[
+{id:"sub1",img:"sub1",n:"Poulet épicé",d:"Poulet mariné, poivrons, oignons rouges marinés, sauce crémeuse.",p:5000},
+{id:"sub2",img:"sub2",n:"Dinde & fromage",d:"Dinde fumée, fromage fondu, cornichons, poivrons verts.",p:4500},
+{id:"sub3",img:"sub3",n:"Salami & sauce",d:"Salami, pepperoni, sauce brune, oignons, base crème blanche.",p:5000},
+{id:"sub4",img:"sub4",n:"Poulet grillé",d:"Poulet grillé, jalapeños, sauce aux graines, poivrons.",p:5500}]},
+{id:"wraps",n:"Wraps & sandwichs",s:"Pressés à la commande",items:[
+{id:"wrap",img:"wrap",n:"Wrap Caesar grillé",d:"Poulet grillé, romaine, parmesan, croûtons, sauce Caesar.",p:5000,tag:"Plat du moment"},
+{id:"pan",img:"pan",n:"Panini effiloché",d:"Viande effilochée, oignons rouges, salade, pain pressé.",p:4500},
+{id:"doner",img:"doner",n:"Burger döner",d:"Émincé de viande grillée, tomate, salade, sauce yaourt.",p:5500}]}];
+const ALL=CATS.flatMap(c=>c.items),$=s=>document.querySelector(s),eur=v=>Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u202f')+'\u00a0FCFA';
+const cart=[];let cur=null;
+const TH={burgers:["#0F6B47","#ffffff","b1"],hotdogs:["#FCD116","#13261c","hd2"],subs:["#2F6DB5","#ffffff","sub4"],wraps:["#D8452B","#ffffff","wrap"]};
+const root=document.documentElement;let cc='';
+$('#tabs').innerHTML=CATS.map(c=>`<button role="tab" data-c="${c.id}"><img src="${IMG[TH[c.id][2]]}" alt="" decoding="async"><span>${c.n}</span></button>`).join('');
+function paint(id){const c=CATS.find(x=>x.id===id);root.style.setProperty('--pt',TH[id][1]);
+$('#head').innerHTML=`<h2 aria-label="${c.n}">${[...c.n].map((ch,i)=>`<i aria-hidden="true" style="--d:${i*45}ms">${ch===' '?'&nbsp;':ch}</i>`).join('')}</h2><p>${c.s}</p>`;
+$('#grid').innerHTML=c.items.map((i,k)=>`<button class="card" style="--d:${200+k*90}ms" onclick="openItem('${i.id}')"><div class="arch"><img src="${IMG[i.img]}" alt="${i.n}" loading="lazy" decoding="async">${i.tag?`<span class="tag">${i.tag}</span>`:''}</div><h3>${i.n}</h3><div class="row"><span class="price">${eur(i.p)}</span><span class="add" aria-hidden="true">+</span></div></button>`).join('');
+document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-current',b.dataset.c===id))}
+function go(id,ev){if(id===cc)return;const first=!cc;cc=id;
+if(first){root.style.setProperty('--pb',TH[id][0]);root.style.setProperty('--pc',TH[id][0]);paint(id);return}
+const r=ev.currentTarget.getBoundingClientRect(),p=`${r.left+r.width/2}px ${r.top+r.height/2}px`,w=document.createElement('div');
+w.className='wash';w.style.background=TH[id][0];w.style.clipPath=`circle(0px at ${p})`;document.body.prepend(w);w.getBoundingClientRect();
+w.style.clipPath=`circle(160vmax at ${p})`;root.style.setProperty('--pc',TH[id][0]);paint(id);scrollTo({top:0,behavior:'smooth'});
+setTimeout(()=>{root.style.setProperty('--pb',TH[id][0]);w.remove()},800)}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=e=>go(b.dataset.c,e));
+go('burgers');
+function show(h){$('#sheet').innerHTML=h;$('#sheet').classList.add('on');$('#veil').classList.add('on')}
+function hide(){$('#sheet').classList.remove('on');$('#veil').classList.remove('on')}
+$('#veil').onclick=hide;
+function openItem(id){const i=ALL.find(x=>x.id===id);cur={i,q:1,f:false};drawItem()}
+function drawItem(){const{i,q,f}=cur,t=(i.p+(f?1500:0))*q;show(`<button class="close" onclick="hide()" aria-label="Fermer">✕</button><img class="ph" src="${IMG[i.img]}" alt="${i.n}" decoding="async"><div class="b"><h3>${i.n}</h3><p class="sub" style="margin-top:6px">${i.d}</p><button class="opt" aria-pressed="${f}" onclick="cur.f=!cur.f;drawItem()"><span>Ajouter frites + boisson</span><span>+1 500 FCFA</span></button><div class="row" style="margin-top:18px"><div class="qty"><button onclick="cur.q=Math.max(1,cur.q-1);drawItem()" aria-label="Moins">−</button>${q}<button onclick="cur.q++;drawItem()" aria-label="Plus">+</button></div></div><button class="cta" onclick="addCur()"><span>Ajouter</span><span>${eur(t)}</span></button></div>`)}
+function addCur(){const{i,q,f}=cur;cart.push({n:i.n,q,f,t:(i.p+(f?1500:0))*q});hide();bar()}
+function bar(){const n=cart.reduce((a,c)=>a+c.q,0),t=cart.reduce((a,c)=>a+c.t,0),b=$('#bar');b.classList.toggle('on',n>0);b.innerHTML=`<span>${n} article${n>1?'s':''} · ${eur(t)}</span><b>Voir ma commande</b>`}
+$('#bar').onclick=()=>{const t=cart.reduce((a,c)=>a+c.t,0);show(`<div class="b" style="padding-top:26px"><h3>Ma commande</h3><p class="sub" style="margin-top:6px">Table 7</p>${cart.map((c,k)=>`<div class="line"><div>${c.q} × ${c.n}${c.f?'<small>avec frites + boisson</small>':''}</div><div>${eur(c.t)} <button onclick="cart.splice(${k},1);bar();cart.length?$('#bar').click():hide()" aria-label="Retirer" style="color:var(--rd);margin-left:6px">✕</button></div></div>`).join('')}<div class="total"><span>Total</span><span>${eur(t)}</span></div><button class="cta" onclick="send()"><span>Envoyer en cuisine</span><span>${eur(t)}</span></button></div>`)};
+function send(){cart.length=0;bar();show(`<div class="ok"><h3>Commande envoyée</h3><p class="sub">La cuisine prépare votre repas. Comptez environ 12 minutes.</p><button class="cta" style="justify-content:center" onclick="hide()">Retour au menu</button></div>`)}
+</script></body></html>
